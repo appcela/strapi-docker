@@ -13,6 +13,9 @@ WORKDIR /usr/src/api
 
 RUN echo "unsafe-perm = true" >> ~/.npmrc
 
+# fix for Strapi beta build failuer - https://github.com/strapi/strapi/issues/3542
+RUN apk add --no-cache build-base gcc autoconf automake libtool zlib-dev libpng-dev nasm
+
 RUN npm install -g strapi@beta
 
 COPY strapi.sh ./
